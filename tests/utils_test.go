@@ -8,7 +8,7 @@ import (
 )
 
 
-	func TestMin(t *testing.T) {
+func TestMin(t *testing.T) {
 	// given
 	now:=time.Now()
 	expected := now.Add(time.Duration(-24*time.Hour))
@@ -96,13 +96,14 @@ func TestCleanWithinWindowWithOldOrders(t *testing.T) {
 
 
 func TestGetWaitTime(t *testing.T){
+	//given
 	expectedDuration,_ := time.ParseDuration("1h")
 	now := time.Now()
 	then := now.Add(-23 * time.Hour)
-
+	//when
 	waitTime := pkg.GetWaitTime(then,now,24)
 
-
+	//then
 	if waitTime != expectedDuration {
 		t.Errorf(fmt.Sprintf("Expcted duration is [%s] but got [%s] ", expectedDuration.String(),waitTime.String()))
 	}
