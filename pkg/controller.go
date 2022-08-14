@@ -49,7 +49,7 @@ func (crh *CoffeRequestHandler) GetCoffe(w http.ResponseWriter, r *http.Request,
 		log.Debug(fmt.Sprintf("Rejected request to [%s] as he exceed hist limit of requests", userId))
 	}else{
 		w.WriteHeader(200)
-		io.WriteString(w, fmt.Sprintf("{\"Message\": \"%s\"",res))	
+		io.WriteString(w, fmt.Sprintf("{\"Message\": \"%s\"}",res))	
 	}
 		
 }

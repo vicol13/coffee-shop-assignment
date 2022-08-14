@@ -12,10 +12,6 @@ func (rc *RulesContainer) getRule(rule string) map[string]int{
 	return rc.ruleMap[rule]
 }
 
-func (rc *RulesContainer) getTiming(rule string) int {
-	return rc.timing[rule]
-}
-
 
 func InitRules() (RulesContainer) {
 	mm := map[string]map[string]int {
@@ -31,15 +27,10 @@ func InitRules() (RulesContainer) {
 		},
 		MANIAC:{
 			ESPRESSO:5,
-			AMERICANO:5,
-			CAPPUCCINO :5,
+			AMERICANO:3,
+			CAPPUCCINO :1,
 		},
 	}
 	
-	tt := map[string]int{
-		BASIC:24,
-		LOVER:24,
-		MANIAC:1,
-	}
-	return RulesContainer{ruleMap: mm,timing:  tt}
+	return RulesContainer{ruleMap: mm}
 }

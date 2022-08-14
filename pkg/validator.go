@@ -25,19 +25,24 @@ func (qv *QuotaValidator) Handle(quota string,history OrderHistory, newOrder str
 
 func (qv *QuotaValidator) onBasic(history OrderHistory, newOrder string) error {
 	rules := qv.RulesContainer.getRule(BASIC)
-	timeWindow :=qv.RulesContainer.getTiming(BASIC)
-	return qv.validate(history, newOrder, rules ,timeWindow)
+
+	return qv.validate(history, newOrder, rules ,24)
 }
 
 func (qv *QuotaValidator) onLover(history OrderHistory,newOrder string) error {
 	rules := qv.RulesContainer.getRule(LOVER)
-	timeWindow :=qv.RulesContainer.getTiming(LOVER)
-	return qv.validate(history, newOrder, rules ,timeWindow)
+
+	return qv.validate(history, newOrder, rules ,24)
 }
 
 func (qv *QuotaValidator) onManiac(history OrderHistory, newOrder string) error {
 	rules := qv.RulesContainer.getRule(MANIAC)
-	timeWindow :=qv.RulesContainer.getTiming(MANIAC)
+	var timeWindow int 
+	if newOrder == ESPRESSO {
+		timeWindow = 1
+	} else {
+		timeWindow = 24
+	}
 	return qv.validate(history, newOrder, rules ,timeWindow)
 }
 
