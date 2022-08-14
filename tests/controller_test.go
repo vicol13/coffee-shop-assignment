@@ -1,8 +1,5 @@
 package tests
 
-// import (
-//     "net/http"
-//     "net/http/httptest"
-//     "testing"
-// 	gomock "github.com/golang/mock/mockgen"
-// )
+// would be ideal to have unite tests for rest of classes
+// but this will require more time and investigation 
+// as approaches in golang are completely new so far 
