@@ -11,20 +11,20 @@ import (
 
 
 var PATHS = map[string]bool {
-	AMERICANO:true,
-	CAPPUCCINO:true,
-	ESPRESSO :true,
+	Americano:true,
+	Cappuccino:true,
+	Espresso :true,
 }
 
 
 
 //struct which contains logic related to http interaction with system
-type CoffeRequestHandler struct {
+type CoffeeRequestHandler struct {
 	Coffeeservice *CoffeeService
 }
 
 
-func (crh *CoffeRequestHandler) GetCoffe(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (crh *CoffeeRequestHandler) GetCoffe(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	w.Header().Add("Content-Type", "application/json")
 	
 	if _ ,ok := PATHS[params.ByName("name")]; !ok { //wrong path
@@ -57,7 +57,7 @@ func (crh *CoffeRequestHandler) GetCoffe(w http.ResponseWriter, r *http.Request,
 
 
 // This function is responsible for for validating headers 
-func  (h *CoffeRequestHandler) loadAndValidateHeaders(w http.ResponseWriter, r *http.Request) (string,string,error) {
+func  (h *CoffeeRequestHandler) loadAndValidateHeaders(w http.ResponseWriter, r *http.Request) (string,string,error) {
 	quota := r.Header.Get("quota")
 	if quota == "" {
 		log.Debug("Rejected request header [quota] is missing")
