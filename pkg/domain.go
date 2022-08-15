@@ -2,14 +2,13 @@ package pkg
 
 import "time"
 
-
 type ProductRules struct {
-	Limit int 
+	Limit         int
 	TimeWindowHrs int
 }
 type ErrorHttpWrapper struct {
-	Message string 
-	Timestamp time.Time 
+	Message   string
+	Timestamp time.Time
 }
 
 type HttpResponse struct {
@@ -17,14 +16,14 @@ type HttpResponse struct {
 }
 
 type Order struct {
-	Product string 
-	Timestamp time.Time  
+	Product   string
+	Timestamp time.Time
 }
 
 type OrderHistory struct {
-	Orders []Order	
+	Orders []Order
 }
 
-func (r *OrderHistory) add(order Order)  {
+func (r *OrderHistory) add(order Order) {
 	r.Orders = append(r.Orders, order)
 }
