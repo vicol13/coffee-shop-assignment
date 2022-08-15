@@ -15,14 +15,14 @@ func TestBasicQuotaWithoutLimit(t *testing.T){
 	validator := pkg.QuotaValidator{RulesContainer: &rules}
 
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
-	order2 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order2 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
 	orderHistory := pkg.OrderHistory{Orders: []pkg.Order{order1,order2}}
 
 	//when
-	americanoError := validator.Handle(pkg.BASIC,orderHistory,pkg.AMERICANO)
-	espressoError := validator.Handle(pkg.BASIC,orderHistory,pkg.ESPRESSO )
-	cappuccinoError := validator.Handle(pkg.BASIC,orderHistory,pkg.CAPPUCCINO)
+	americanoError := validator.Handle(pkg.Basic,orderHistory,pkg.Americano)
+	espressoError := validator.Handle(pkg.Basic,orderHistory,pkg.Espresso )
+	cappuccinoError := validator.Handle(pkg.Basic,orderHistory,pkg.Cappuccino)
 
 
 	//then
@@ -47,22 +47,22 @@ func TestBasicQuotaWithCompleteLimitation(t *testing.T){
 	validator := pkg.QuotaValidator{RulesContainer: &rules}
 
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
-	order2 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-2*time.Hour)) }
-	order3 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
+	order2 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-2*time.Hour)) }
+	order3 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
 	
-	order4 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
-	order5 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
-	order6 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
+	order4 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
+	order5 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
+	order6 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
 
-	order7 := pkg.Order{Product: pkg.CAPPUCCINO ,Timestamp: tmg.Add(time.Duration(-7*time.Hour)) }
+	order7 := pkg.Order{Product: pkg.Cappuccino ,Timestamp: tmg.Add(time.Duration(-7*time.Hour)) }
 	
 	orderHistory := pkg.OrderHistory{Orders: []pkg.Order{order1,order2,order3,order4,order5,order6,order7}}
 
 	//when
-	americanoError := validator.Handle(pkg.BASIC,orderHistory,pkg.AMERICANO )
-	espressoError := validator.Handle(pkg.BASIC,orderHistory,pkg.ESPRESSO)
-	cappuccinoError := validator.Handle(pkg.BASIC,orderHistory,pkg.CAPPUCCINO)
+	americanoError := validator.Handle(pkg.Basic,orderHistory,pkg.Americano )
+	espressoError := validator.Handle(pkg.Basic,orderHistory,pkg.Espresso)
+	cappuccinoError := validator.Handle(pkg.Basic,orderHistory,pkg.Cappuccino)
 
 	//then
 	if americanoError == nil {
@@ -87,20 +87,20 @@ func TestBasicQuotaWithPartialLimitation(t *testing.T){
 	validator := pkg.QuotaValidator{RulesContainer: &rules}
 
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
-	order3 := pkg.Order{Product: pkg.AMERICANO,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
+	order3 := pkg.Order{Product: pkg.Americano,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
 	
-	order4 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
-	order5 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
-	order6 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
+	order4 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
+	order5 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
+	order6 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
 
 	
 	orderHistory := pkg.OrderHistory{Orders: []pkg.Order{order1,order3,order4,order5,order6}}
 
 	//then
-	americanoError := validator.Handle(pkg.BASIC,orderHistory,pkg.AMERICANO)
-	espressoError := validator.Handle(pkg.BASIC,orderHistory,pkg.ESPRESSO)
-	cappuccinoError := validator.Handle(pkg.BASIC,orderHistory,pkg.CAPPUCCINO)
+	americanoError := validator.Handle(pkg.Basic,orderHistory,pkg.Americano)
+	espressoError := validator.Handle(pkg.Basic,orderHistory,pkg.Espresso)
+	cappuccinoError := validator.Handle(pkg.Basic,orderHistory,pkg.Cappuccino)
 
 
 	//when
@@ -125,22 +125,22 @@ func TestBasicQuotaWithPartialLimitationAndOldOrders(t *testing.T){
 	validator := pkg.QuotaValidator{RulesContainer: &rules}
 
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
-	order2 := pkg.Order{Product: pkg.AMERICANO,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
-	order3 := pkg.Order{Product: pkg.AMERICANO,Timestamp: tmg.Add(time.Duration(-25*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano,Timestamp: tmg.Add(time.Duration(-1*time.Hour)) }
+	order2 := pkg.Order{Product: pkg.Americano,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order3 := pkg.Order{Product: pkg.Americano,Timestamp: tmg.Add(time.Duration(-25*time.Hour)) }
 	
-	order4 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
-	order5 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
-	order6 := pkg.Order{Product: pkg.ESPRESSO,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
+	order4 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-4*time.Hour)) }
+	order5 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-5*time.Hour)) }
+	order6 := pkg.Order{Product: pkg.Espresso,Timestamp: tmg.Add(time.Duration(-6*time.Hour)) }
 
-	order7 := pkg.Order{Product: pkg.CAPPUCCINO,Timestamp: tmg.Add(time.Duration(-26*time.Hour)) }
+	order7 := pkg.Order{Product: pkg.Cappuccino,Timestamp: tmg.Add(time.Duration(-26*time.Hour)) }
 
 	orderHistory := pkg.OrderHistory{Orders: []pkg.Order{order1,order2,order3,order4,order5,order6,order7}}
 
 	//then
-	americanoError := validator.Handle(pkg.BASIC,orderHistory,pkg.AMERICANO)
-	espressoError := validator.Handle(pkg.BASIC,orderHistory,pkg.ESPRESSO)
-	cappuccinoError := validator.Handle(pkg.BASIC,orderHistory,pkg.CAPPUCCINO)
+	americanoError := validator.Handle(pkg.Basic,orderHistory,pkg.Americano)
+	espressoError := validator.Handle(pkg.Basic,orderHistory,pkg.Espresso)
+	cappuccinoError := validator.Handle(pkg.Basic,orderHistory,pkg.Cappuccino)
 
 
 	//when
