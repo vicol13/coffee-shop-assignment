@@ -2,6 +2,11 @@ package pkg
 
 import "time"
 
+
+type ProductRules struct {
+	Limit int 
+	TimeWindowHrs int
+}
 type ErrorHttpWrapper struct {
 	Message string 
 	Timestamp time.Time 
