@@ -26,7 +26,7 @@ func InitRules() RulesContainer {
 			Cappuccino: ProductRules{Limit: 5, TimeWindowHrs: 24},
 		},
 		Maniac: {
-			Espresso:   ProductRules{Limit: 5, TimeWindowHrs: 24},
+			Espresso:   ProductRules{Limit: 5, TimeWindowHrs: 1},
 			Americano:  ProductRules{Limit: 3, TimeWindowHrs: 24},
 			Cappuccino: ProductRules{Limit: 1, TimeWindowHrs: 24},
 		},
