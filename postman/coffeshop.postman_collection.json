@@ -1,0 +1,553 @@
+{
+	"info": {
+		"_postman_id": "65702c9c-31e1-448b-8e5e-54663df7b2f5",
+		"name": "coffeshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "basic quota",
+			"item": [
+				{
+					"name": "get cappucion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  americano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get espresso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lover",
+			"item": [
+				{
+					"name": "get cappucion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  americano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get espresso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "maniac",
+			"item": [
+				{
+					"name": "get cappucion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get  americano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get espresso",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{QUOTA-HEADER}}",
+								"value": "{{BASIC}}",
+								"type": "default"
+							},
+							{
+								"key": "{{USER-HEADER}}",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/cappuccino",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"cappuccino"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get without quota header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "{{USER-HEADER}}",
+						"value": "1",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/americano",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"americano"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get without user header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "{{QUOTA-HEADER}}",
+						"value": "{{BASIC}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/americano",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"americano"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send on wrong route",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/abc",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"abc"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": " http://localhost:8000/coffee",
+			"type": "default"
+		},
+		{
+			"key": "BASIC",
+			"value": "basic",
+			"type": "default"
+		},
+		{
+			"key": "MANIAC",
+			"value": "maniac",
+			"type": "default"
+		},
+		{
+			"key": "LOVER",
+			"value": "lover",
+			"type": "default"
+		},
+		{
+			"key": "QUOTA-HEADER",
+			"value": "quota",
+			"type": "default"
+		},
+		{
+			"key": "USER-HEADER",
+			"value": "user-id",
+			"type": "default"
+		}
+	]
+}
