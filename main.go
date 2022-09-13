@@ -3,10 +3,10 @@ package main
 import (
 	"aaha/pkg"
 	"context"
-	"net/http"
 	"github.com/go-redis/redis/v8"
 	"github.com/julienschmidt/httprouter"
 	log "github.com/sirupsen/logrus"
+	"net/http"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	quotaValidator := pkg.QuotaValidator{RulesContainer: &rulesContainer}
 	redis := pkg.RedisRepository{Client: client, Ctx: ctx}
 	service := pkg.CoffeeService{Redis: &redis, Validator: &quotaValidator}
-	webserviceHandler := pkg.CoffeRequestHandler{Coffeeservice: &service}
+	webserviceHandler := pkg.CoffeeRequestHandler{Coffeeservice: &service}
 
 	router := httprouter.New()
 	router.GET("/coffee/:name", webserviceHandler.GetCoffe)

@@ -4,71 +4,53 @@ import (
 	"errors"
 	"fmt"
 	"time"
-
 )
-
 
 type QuotaValidator struct {
 	RulesContainer *RulesContainer
 }
 
-func (qv *QuotaValidator) Handle(quota string,history OrderHistory, newOrder string ) error {
+// represents the generic function to handle new requests to validate the quota
+// @quota -> represent the of current user
+// @history -> represent the previous reqeusts of the user
+// @newOrder -> represent the new product which user wants to get (e.g. americano, espresso)
+func (qv *QuotaValidator) Handle(quota string, history OrderHistory, newOrder string) error {
 	//todo: move to map number of products increase
 	switch quota {
-		case BASIC: return qv.onBasic(history,newOrder)
-		case MANIAC: return qv.onManiac(history,newOrder)
-		case LOVER: return qv.onLover(history,newOrder)
+	case Basic:
+		return qv.validate(history, newOrder, qv.RulesContainer.GetProductRules(Basic, newOrder))
+	case Maniac:
+		return qv.validate(history, newOrder, qv.RulesContainer.GetProductRules(Maniac, newOrder))
+	case Lover:
+		return qv.validate(history, newOrder, qv.RulesContainer.GetProductRules(Lover, newOrder))
 	}
-	
+
 	return errors.New("no such quota: " + quota)
 }
 
-func (qv *QuotaValidator) onBasic(history OrderHistory, newOrder string) error {
-	rules := qv.RulesContainer.getRule(BASIC)
-
-	return qv.validate(history, newOrder, rules ,24)
-}
-
-func (qv *QuotaValidator) onLover(history OrderHistory,newOrder string) error {
-	rules := qv.RulesContainer.getRule(LOVER)
-
-	return qv.validate(history, newOrder, rules ,24)
-}
-
-func (qv *QuotaValidator) onManiac(history OrderHistory, newOrder string) error {
-	rules := qv.RulesContainer.getRule(MANIAC)
-	var timeWindow int 
-	if newOrder == ESPRESSO {
-		timeWindow = 1
-	} else {
-		timeWindow = 24
-	}
-	return qv.validate(history, newOrder, rules ,timeWindow)
-}
-
-//generic function to validate quotas
-func (qv *QuotaValidator) validate(history OrderHistory, newOrder string,rules map[string]int, timeWindowHrs int) error {
+// generic function to validate the quota constraints for certain item
+// @history -> previous aquired by user
+// @newOrder -> desired new item
+// @limit -> how many items is user is allowed to get
+// @timeWindowHrs -> in which time window user is allowed to get @limit
+func (qv *QuotaValidator) validate(history OrderHistory, newOrder string, rules ProductRules) error {
 	end := time.Now()
-	start := end.Add(-(time.Duration(timeWindowHrs) * time.Hour))
+	start := end.Add(-(time.Duration(rules.TimeWindowHrs) * time.Hour))
 
-	counter :=0
+	counter := 0
 	minTime := end //represent timestamp of oldest request
 
-	//iterate over element of @newProduct type
+	//iterate over elements (history) of filter @newOrder type
 	//within given time window and increment counter
-	for _,element := range history.Orders{
-		if element.Product == newOrder && InTimeSpan(start,end,element.Timestamp){
-			minTime = Min(minTime,element.Timestamp)
-			if(counter == rules[element.Product]-1){
-				timeToWait := GetWaitTime(minTime,end,timeWindowHrs)
-				return errors.New(fmt.Sprintf("excedeed limit of available drinks, please wait : [%s]",timeToWait))
+	for _, element := range history.Orders {
+		if element.Product == newOrder && InTimeSpan(start, end, element.Timestamp) {
+			minTime = Min(minTime, element.Timestamp)
+			if counter == rules.Limit-1 {
+				timeToWait := GetWaitTime(minTime, end, rules.TimeWindowHrs)
+				return errors.New(fmt.Sprintf("excedeed limit of available drinks, please wait : [%s]", timeToWait))
 			}
 			counter = counter + 1
-		}	
-    }
+		}
+	}
 	return nil
 }
-
-
-
-

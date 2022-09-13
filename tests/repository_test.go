@@ -23,13 +23,13 @@ func TestRedisSavingOrderWithoutPreviousHistory(t *testing.T) {
 
 	repo := pkg.RedisRepository{Client: client, Ctx: ctx}
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
 
 	//when
 	repo.SaveOrder("1",order1) 
 	
 	//then
-	val,err := repo.Find("1")
+	val,err := repo.FindOrEmpty("1")
 
 	if err != nil {
 		t.Errorf("Error while retrieving the entity from redis")
@@ -64,21 +64,46 @@ func TestRedisSavingOrderWithPreviousHistory(t *testing.T) {
 
 	repo := pkg.RedisRepository{Client: client, Ctx: ctx}
 	tmg := time.Now()
-	order1 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
-	order2 := pkg.Order{Product: pkg.AMERICANO ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order1 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
+	order2 := pkg.Order{Product: pkg.Americano ,Timestamp: tmg.Add(time.Duration(-3*time.Hour)) }
 	
 	//when
 	repo.SaveOrder("1",order1) 
 	repo.SaveOrder("1",order2) 
 	
 	//then
-	val,err := repo.Find("1")
+	val,err := repo.FindOrEmpty("1")
 
 	if err != nil {
 		t.Errorf("Error while retrieving the entity from redis")
 	}
 
 	if len(val.Orders) != 2 {
+		t.Errorf("Size of history is expected to be 1, got %d", len(val.Orders))
+	}
+}
+
+
+func TestRedisReturnEmptyHistory(t *testing.T) {
+	//given
+	s,_ := miniredis.Run()
+	ctx := context.Background()
+	client := redis.NewClient(&redis.Options{
+		Addr: s.Addr(),
+	})
+
+	repo := pkg.RedisRepository{Client: client, Ctx: ctx}
+
+	
+	//when
+	val,err := repo.FindOrEmpty("1")
+
+	//then
+	if err != nil {
+		t.Errorf("Error while retrieving the entity from redis")
+	}
+
+	if len(val.Orders) != 0 {
 		t.Errorf("Size of history is expected to be 1, got %d", len(val.Orders))
 	}
 }

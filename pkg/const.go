@@ -1,12 +1,10 @@
 package pkg
 
-
-
-const (  
-	AMERICANO = "americano"  
-	CAPPUCCINO =  "cappuccino"  
-	ESPRESSO = "espresso"
-	LOVER = "lover"
-	BASIC = "basic"
-	MANIAC = "maniac"
+const (
+	Americano  = "americano"
+	Cappuccino = "cappuccino"
+	Espresso   = "espresso"
+	Lover      = "lover"
+	Basic      = "basic"
+	Maniac     = "maniac"
 )
